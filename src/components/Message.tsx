@@ -12,12 +12,8 @@ export const Message: React.FC<MessageProps> = ({
   onToggle, 
   onRemove
 }) => {
-  const classes = ['message']
-  if (message.readed) {
-    classes.push('readed')
-  }
   return (
-    <li  className={classes.join(' ')} >
+    <li  className={message.readed ? 'readed' : ''} >
       <label>
         <input 
           type="checkbox" 

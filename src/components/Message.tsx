@@ -13,19 +13,24 @@ export const Message: React.FC<MessageProps> = ({
   onRemove
 }) => {
   return (
-    <li  className={message.readed ? 'readed' : ''} >
-      <label>
+    <li  className="message mw30" >
+      {/* <label>
         <input 
           type="checkbox" 
           checked={message.readed} 
           onChange={() => onToggle(message.id)}
         />
         <span >{message.title}</span>
+        <p >{message.author}</p>
         <i 
           className="material-icons red-text" 
           onClick={() => onRemove(message.id)}
         >delete</i>
-      </label>
+      </label> */}
+      <div className={message.readed ? "card-panel blue accent-2 p5-15" : "card-panel blue lighten-5"}>
+        <p className="message__author">{message.author}</p>
+        <p className="message__title">{message.title}</p>
+      </div>
     </li>
   )
 }

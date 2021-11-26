@@ -17,7 +17,7 @@ export const MessageList: React.FC<MessageListProps> = ({
     return <p className="center">Нет сообщений</p>
   }
   return (
-    <ul>
+    <ul className="col s6 offset-s3">
       {messages.map(message => {
         return (
           <Message 

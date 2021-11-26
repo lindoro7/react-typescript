@@ -24,15 +24,23 @@ code {
   margin-top: 3rem;
 }
 
-.message {
+.mw30 {
+  min-width: 30%;
+}
+
+.p5-15 {
+  padding: 5px 15px;
+}
+
+/* .message {
   margin-bottom: 1rem;
-}
+} */
 
-.message.readed span {
+/* .message.readed span {
   text-decoration: line-through;
-}
+} */
 
-.message label {
+/* .message label {
   width: 100%;;
   display: flex;
   align-items: center;
@@ -40,8 +48,12 @@ code {
   cursor: pointer;
   padding: 1rem;
   background: #f3f3f3;
-}
+} */
 
 .message i{
   z-index: 2;
+}
+
+.message p {
+  margin: 0;
 }

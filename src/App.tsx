@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Navbar } from './components/Navbar'
 import { MessageForm } from './components/MessageForm'
 import { MessageList } from './components/MessageList'
@@ -7,13 +7,14 @@ import { IMessage} from './interfaces'
 const App: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([])
 
-  const addHandler = (title: string) => {
+  const addHandler = (title: string, author: string) => {
     const newMessage: IMessage = {
       id: Date.now(),
       title: title,
+      author: author || 'anonimous',
       readed: false,
     }
-    // setMessages([newMessage, ...messages])
+    if(title === '') return
     setMessages(prevState => [newMessage, ...prevState])
   }
 
@@ -34,6 +35,14 @@ const App: React.FC = () => {
       prevState.filter(message => message.id !== id)
     )
   }
+
+  useEffect(() => {
+    if(messages[0] && (messages[0].author !== 'Admin')) {
+      setTimeout(() => {
+        addHandler('Фиксированное сообщение с текстом)))', 'Admin')
+      }, 1500)
+    }
+  }, [messages])
 
   return (
     <>

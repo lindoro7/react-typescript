@@ -1,11 +1,12 @@
 import React from 'react'
 import { IMessage } from '../interfaces'
 import { Message } from './Message'
+import List from '@mui/material/List'
 
 type MessageListProps = {
   messages: IMessage[]
-  onToggle:(id: number) => void
-  onRemove: (id: number) => void
+  onToggle:(id: string) => void
+  onRemove: (id: string) => void
 }
 
 export const MessageList: React.FC<MessageListProps> = ({
@@ -17,7 +18,7 @@ export const MessageList: React.FC<MessageListProps> = ({
     return <p className="center">Нет сообщений</p>
   }
   return (
-    <ul className="col s6 offset-s3">
+    <List>
       {messages.map(message => {
         return (
           <Message 
@@ -28,6 +29,6 @@ export const MessageList: React.FC<MessageListProps> = ({
           />
         )
       })}
-    </ul>
+    </List>
   )
 }

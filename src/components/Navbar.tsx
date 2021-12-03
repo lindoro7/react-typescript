@@ -1,16 +1,33 @@
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
 
 export const Navbar: React.FC = () => {
   return (
-    <nav>
-      <div className="nav-wrapper deep-purple darken-3">
-        <a href="/" className="brand-logo left ml5 ">React+TypeScript</a>
-        <ul id="nav-mobile" className="mr5 right hide-on-med-and-down">
-        <li><a href="/">Link 1</a></li>
-        <li><a href="/">Link 2</a></li>
-        </ul>
-      </div>
-    </nav>
+    <AppBar 
+      position='static'
+      sx={{mb: '2rem'}}
+    >
+      <Toolbar>
+        <IconButton
+          size='large'
+          edge='start'
+          color='inherit'
+          aria-label='menu'
+          sx={{mr: 2}}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant='h6' component='div' sx={{flexGrow: 1}}>
+          React+MUI
+        </Typography>
+        <Button
+          color='inherit'
+        >
+          Login
+        </Button>
+      </Toolbar>
+    </AppBar>
   )
 }
 

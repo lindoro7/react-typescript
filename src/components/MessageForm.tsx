@@ -1,3 +1,5 @@
+import { Grid, Button, Input } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send'
 import React, { useState } from 'react'
 
 interface MessageFormProps {
@@ -7,16 +9,9 @@ interface MessageFormProps {
 export const MessageForm: React.FC<MessageFormProps> = ({onAdd}) => {
   const [title, setTitle] = useState<string>('')
   const [author, setAuthor] = useState<string>('')
-
-  // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setTitle(event.target.value)
-  //   setAuthor(event.target.value)
-  // }
-
-  // const changeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   setTitle(title)
-  //   setAuthor(author)
-  // }
+  const defaultName: string = 'anonimous'
+  
+  const titleInput: HTMLElement | null = document.getElementById('title')
 
   const titleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
@@ -28,51 +23,69 @@ export const MessageForm: React.FC<MessageFormProps> = ({onAdd}) => {
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      onAdd(title, author)
+      onAdd(title, author || defaultName)
       setTitle('')
-      setAuthor('')
+      setAuthor(author)
+      titleInput?.focus()
     }
   }
 
   const formSubmitHandler = (event: React.MouseEvent) => {
     event.preventDefault()
-    onAdd(title, author)
+    onAdd(title, author || defaultName)
     setTitle('')
-    setAuthor('')
+    setAuthor(author)
+    titleInput?.focus()
   }
 
   
   
+  
   return (
-    <div className="row">
-      <form className="col s12">
-          <div className="input-field mt3 ">
-            <input 
-              className="col s2"
-              onChange={authorHandler}
-              value={author} 
-              type="text" 
-              id="author" 
-              onKeyPress={keyPressHandler}
-            />
-          </div>
-          <div className="input-field mt3 ">
-            <input 
-              className="col s8 offset-s1"
-              onChange={titleHandler}
-              value={title} 
-              type="text" 
-              id="title" 
-              onKeyPress={keyPressHandler}
-            />
-          </div>  
-          <button 
-            className="waves-effect waves-light btn z-depth-4 col s1"
-            onClick={formSubmitHandler}
-          >
-            <i className="medium material-icons">send</i>
-          </button>
-      </form>
-    </div>
+    <Grid 
+      container  
+      columnSpacing={1} 
+      rowSpacing={1}
+      sx={{mb: 5}}
+    >
+      <Grid item xs={5}>
+        <Input
+          sx={{width: '60%'}}
+          autoFocus={true}
+          placeholder='NAME: anonimous'
+          onChange={authorHandler}
+          value={author} 
+          type="text" 
+          id="author" 
+          onKeyPress={keyPressHandler}
+          tabIndex={1}
+        />
+      </Grid>
+      <Grid item xs={5}>
+        <Input
+          sx={{width: '100%'}}
+          placeholder='Enter your message'
+          value={title} 
+          type="text" 
+          id="title" 
+          onKeyPress={keyPressHandler}
+          onChange={titleHandler}
+          tabIndex={2}
+        />
+      </Grid>
+      <Grid item xs={2}>
+        <Button 
+          variant='contained'
+          color='secondary'
+          onClick={formSubmitHandler}
+          sx={{ 
+            width: 100,
+          }}
+          tabIndex={3}
+        >
+          <SendIcon/>
+        </Button>
+      </Grid>
+    </Grid>
   )
 }

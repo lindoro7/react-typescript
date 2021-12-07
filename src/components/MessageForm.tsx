@@ -3,13 +3,15 @@ import SendIcon from '@mui/icons-material/Send'
 import React, { useState } from 'react'
 
 interface MessageFormProps {
-  onAdd(title: string, author: string): void
+  onAdd(title: string, author: string, chatID: string): void
+  chatID: string
 }
 
-export const MessageForm: React.FC<MessageFormProps> = ({onAdd}) => {
+export const MessageForm: React.FC<MessageFormProps> = ({onAdd, chatID}) => {
   const [title, setTitle] = useState<string>('')
   const [author, setAuthor] = useState<string>('')
   const defaultName: string = 'anonimous'
+
   
   const titleInput: HTMLElement | null = document.getElementById('title')
 
@@ -23,7 +25,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({onAdd}) => {
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      onAdd(title, author || defaultName)
+      onAdd(title, (author || defaultName), chatID)
       setTitle('')
       setAuthor(author)
       titleInput?.focus()
@@ -32,7 +34,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({onAdd}) => {
 
   const formSubmitHandler = (event: React.MouseEvent) => {
     event.preventDefault()
-    onAdd(title, author || defaultName)
+    onAdd(title, author || defaultName, chatID)
     setTitle('')
     setAuthor(author)
     titleInput?.focus()

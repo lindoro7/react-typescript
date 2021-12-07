@@ -4,6 +4,7 @@ export interface IMessage {
   author: string
   readed: boolean
   isAnswered: boolean
+  chatID: string
 }
 
 export interface IChat {

@@ -6,7 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemText from '@mui/material/ListItemText'
 import Avatar from '@mui/material/Avatar'
-import FolderIcon from '@mui/icons-material/Folder'
+import DoneIcon from '@mui/icons-material/Done'
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 interface MessageProps {
   message: IMessage
@@ -33,7 +34,10 @@ export const Message: React.FC<MessageProps> = ({
     >
       <ListItemAvatar>
         <Avatar>
-          <FolderIcon />
+          {message.readed 
+            ? <DoneAllIcon color='primary' onClick={() => onToggle(message.id)}/> 
+            : <DoneIcon onClick={() => onToggle(message.id)}/>
+          }
         </Avatar>
       </ListItemAvatar>
       <ListItemText

@@ -81,7 +81,7 @@ const App: React.FC = () => {
       </Grid>
         
       <Grid item xs={9}>
-      <Routes>
+        <Routes>
         
           <Route path='/' element={<Profile />} />
           <Route path="/chats" 
@@ -109,6 +109,7 @@ const App: React.FC = () => {
             element={
               <>
                 <MessageForm onAdd={addHandler} chatID={commonChatID}/>
+                <h3 className="center">Server chat</h3>
                 <MessageList 
                   messages={commonMessages} 
                   onToggle={toggleMessage}
@@ -120,7 +121,7 @@ const App: React.FC = () => {
 
           <Route path="*" element={<NoMatch />} />
         
-      </Routes>
+        </Routes>
         <Outlet />
       </Grid>
 

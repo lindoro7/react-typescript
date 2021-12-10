@@ -12,3 +12,7 @@ export interface IChat {
   theme: string
 }
 
+export interface IAction {
+  type: string
+}
+

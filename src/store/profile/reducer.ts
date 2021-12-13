@@ -1,4 +1,4 @@
-import { TOGGLE_SHOW_NAME } from './actions'
+import { TOGGLE_SHOW_NAME, CHANGE_NAME } from './actions'
 import { IAction } from '../../interfaces'
 
 const initialState = {
@@ -13,6 +13,12 @@ export const profileReducer = (state = initialState, action: IAction) => {
         ...state,
         showName: !state.showName
       }
+    case CHANGE_NAME: 
+      return {
+        ...state,
+       
+      }
+
     default:
       return state
   }
